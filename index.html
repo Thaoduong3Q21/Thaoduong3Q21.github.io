@@ -26,7 +26,7 @@
 }).addTo(map);
 <script>
   // Load GeoJSON ranh giới tỉnh
-  fetch('vietnam_provinces.geojson')
+  fetch('/vietnam_provinces.geojson')
     .then(response => response.json())
     .then(data => {
       L.geoJSON(data, {
@@ -40,7 +40,8 @@
           layer.bindPopup("Tỉnh/Thành: " + name);
         }
       }).addTo(map);
-    });
+    })
+  .catch(error => console.error('Lỗi khi tải GeoJSON:', error));
 </script>
 
 
