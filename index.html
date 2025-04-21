@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WebGIS Cơ Bản</title>
+  <title>WebGIS Cơ Bản của Dương </title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -19,7 +19,7 @@
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
     // Khởi tạo bản đồ
-    var map = L.map('map').setView([21.0285, 105.8542], 13); // Tọa độ Hà Nội
+    var map = L.map('map').setView([20.98935851968625, 105.79565709673528], 13); // Tọa độ Đại học Hà Nội
 
     // Lớp nền sử dụng OSM
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -28,7 +28,7 @@
 
     // Thêm marker
     var marker = L.marker([21.0285, 105.8542]).addTo(map);
-    marker.bindPopup("<b>Chào bạn!</b><br>Đây là Hà Nội.").openPopup();
+    marker.bindPopup("<b>Chào bạn!</b><br>Đây là Đại học Hà Nội thủ đô iu dấu.").openPopup();
   </script>
 
 </body>
