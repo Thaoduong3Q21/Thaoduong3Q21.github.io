@@ -24,6 +24,24 @@
    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
   attribution: 'Tiles © Esri — Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
 }).addTo(map);
+<script>
+  // Load GeoJSON ranh giới tỉnh
+  fetch('vietnam_provinces.geojson')
+    .then(response => response.json())
+    .then(data => {
+      L.geoJSON(data, {
+        style: {
+          color: "#ff6600",
+          weight: 1,
+          fillOpacity: 0.3
+        },
+        onEachFeature: function (feature, layer) {
+          var name = feature.properties.NAME_1 || "Không rõ";
+          layer.bindPopup("Tỉnh/Thành: " + name);
+        }
+      }).addTo(map);
+    });
+</script>
 
 
     // Thêm marker
