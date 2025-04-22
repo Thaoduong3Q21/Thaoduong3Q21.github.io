@@ -31,7 +31,7 @@
     marker.bindPopup("<b>Chào bạn!</b><br>Đây là Đại học Hà Nội.").openPopup();
 
     // Load GeoJSON ranh giới các tỉnh
-    fetch('vietnam_provinces.geojson')
+    fetch('Vietnam_Provinces.json')
       .then(response => response.json())
       .then(data => {
         L.geoJSON(data, {
