@@ -47,6 +47,23 @@
         }).addTo(map);
       })
       .catch(error => console.error("Lỗi khi tải GeoJSON:", error));
+  fetch('Ho_Bao_Linh.geojson')
+    .then(response => response.json())
+    .then(data => {
+      L.geoJSON(data, {
+        style: {
+          color: "#0077be",
+          weight: 2,
+          fillColor: "#00ccff",
+          fillOpacity: 0.5
+        },
+        onEachFeature: function (feature, layer) {
+          const name = feature.properties.name || "Hồ";
+          layer.bindPopup("Tên hồ: " + name);
+        }
+      }).addTo(map);
+    })
+    .catch(error => console.error("Lỗi khi tải lớp Ho_Bao_Linh.geojson:", error));
   </script>
 
 </body>
