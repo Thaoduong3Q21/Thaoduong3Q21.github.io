@@ -48,27 +48,25 @@
       })
       .catch(error => console.error("Lỗi khi tải GeoJSON:", error));
 
-    
-
-    // Load Hồ Tây
+    // Hồ Tây (vẽ sau - nằm trên)
     fetch('hotay.geojson')
-      .then(response => response.json())
+      .then(res => res.json())
       .then(data => {
-        L.geoJSON(data, {
+        const hoLayer = L.geoJSON(data, {
           style: {
-            color: "#be2600",
-            weight: 2,
-            fillColor: "#be2600",
-            fillOpacity: 0.5
+            color: "#0044cc",
+            weight: 3,
+            fillColor: "#66aaff",
+            fillOpacity: 0.6
           },
-          onEachFeature: function (feature, layer) {
-            const name = feature.properties.Name || "Không rõ";
-            layer.bindPopup(name);
-            layer.bringToFront(); 
+          onEachFeature: (feature, layer) => {
+            const name = feature.properties.Name || "Hồ";
+            layer.bindPopup("Tên hồ: " + name);
           }
-        }).addTo(map);
-      })
-      .catch(error => console.error("Lỗi khi tải GeoJSON:", error));
+        });
+        hoLayer.addTo(map); // Đảm bảo thêm sau để nổi lên
+      });
+    
   </script>
 
 </body>
