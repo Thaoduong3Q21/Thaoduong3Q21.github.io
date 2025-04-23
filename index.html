@@ -48,24 +48,6 @@
       })
       .catch(error => console.error("Lỗi khi tải GeoJSON:", error));
 
-  // Load Hồ Bảo Linh
-  fetch('Ho_Bao_Linh.geojson')
-    .then(response => response.json())
-    .then(data => {
-      L.geoJSON(data, {
-        style: {
-          color: "#be2600",
-          weight: 1,
-          fillOpacity: 0.5
-        },
-        onEachFeature: function (feature, layer) {
-          const name = feature.properties.Name || "Hồ";
-          layer.bindPopup("Tên hồ: " + name);
-        }
-      }).addTo(map);
-    })
-    .catch(error => console.error("Lỗi khi tải lớp Ho_Bao_Linh.geojson:", error));
-
   // Load Hồ Tây
   fetch('hotay.geojson')
       .then(response => response.json())
@@ -74,11 +56,11 @@
           style: {
             color: "#00eaff",
             weight: 1,
-            fillOpacity: 0.1
+            fillOpacity: 0.8
           },
           onEachFeature: function (feature, layer) {
             const name = feature.properties.Name || "Không rõ";
-            layer.bindPopup("Tỉnh/Thành: " + name);
+            layer.bindPopup(name);
           }
         }).addTo(map);
       })
