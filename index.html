@@ -30,26 +30,8 @@
     var marker = L.marker([20.9893, 105.7956]).addTo(map);
     marker.bindPopup("<b>Chào bạn!</b><br>Đây là Đại học Hà Nội.").openPopup();
 
-    // Load GeoJSON ranh giới các tỉnh
-    fetch('Vietnam_Provinces.json')
-      .then(response => response.json())
-      .then(data => {
-        L.geoJSON(data, {
-          style: {
-            color: "#ff6600",
-            weight: 1,
-            fillOpacity: 0.01
-          },
-          onEachFeature: function (feature, layer) {
-            const name = feature.properties.NAME_1 || "Không rõ";
-            layer.bindPopup("Tỉnh/Thành: " + name);
-          }
-        }).addTo(map);
-      })
-      .catch(error => console.error("Lỗi khi tải GeoJSON:", error));
-
-  // Load Hồ Tây
-  fetch('hotay.geojson')
+    // Load Hồ Tây
+    fetch('hotay.geojson')
       .then(response => response.json())
       .then(data => {
         L.geoJSON(data, {
@@ -67,6 +49,24 @@
       })
       .catch(error => console.error("Lỗi khi tải GeoJSON:", error));
     
+    
+    // Load GeoJSON ranh giới các tỉnh
+    fetch('Vietnam_Provinces.json')
+      .then(response => response.json())
+      .then(data => {
+        L.geoJSON(data, {
+          style: {
+            color: "#ff6600",
+            weight: 1,
+            fillOpacity: 0.01
+          },
+          onEachFeature: function (feature, layer) {
+            const name = feature.properties.NAME_1 || "Không rõ";
+            layer.bindPopup("Tỉnh/Thành: " + name);
+          }
+        }).addTo(map);
+      })
+      .catch(error => console.error("Lỗi khi tải GeoJSON:", error));
   </script>
 
 </body>
