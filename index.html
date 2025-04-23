@@ -52,7 +52,7 @@
   fetch('hotay.geojson')
       .then(response => response.json())
       .then(data => {
-        lake = L.geoJSON(data, {
+        L.geoJSON(data, {
           style: {
             color: "#00eaff",
             weight: 1,
@@ -61,9 +61,9 @@
           onEachFeature: function (feature, layer) {
             const name = feature.properties.Name || "Không rõ";
             layer.bindPopup(name);
+            layer.bringToFront(); 
           }
         }).addTo(map);
-        lake.bringToFront();
       })
       .catch(error => console.error("Lỗi khi tải GeoJSON:", error));
     
