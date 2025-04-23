@@ -21,6 +21,10 @@
     // Khởi tạo bản đồ
     var map = L.map('map').setView([14.0583, 108.2772], 6); // Tọa độ Việt Nam
 
+    // 1. Tạo pane riêng cho Hồ Tây
+    map.createPane("hoTayPane");
+    map.getPane("hoTayPane").style.zIndex = 650; // cao hơn default vector
+
     // Lớp nền
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       attribution: 'Tiles © Esri — Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
@@ -50,23 +54,22 @@
 
     // Hồ Tây (vẽ sau - nằm trên)
     fetch('hotay.geojson')
-      .then(res => res.json())
-      .then(data => {
-        const hoLayer = L.geoJSON(data, {
-          style: {
-            color: "#0044cc",
-            weight: 3,
-            fillColor: "#66aaff",
-            fillOpacity: 0.6
-          },
-          onEachFeature: (feature, layer) => {
-            const name = feature.properties.Name || "Hồ";
-            layer.bindPopup("Tên hồ: " + name);
-          }
-        });
-        hoLayer.addTo(map); // Đảm bảo thêm sau để nổi lên
-      });
-    
+    .then(res => res.json())
+    .then(data => {
+      L.geoJSON(data, {
+        pane: "hoTayPane", // vẽ lên pane riêng
+        style: {
+          color: "#0044cc",
+          weight: 3,
+          fillColor: "#66aaff",
+          fillOpacity: 0.6
+        },
+        onEachFeature: (feature, layer) => {
+          const name = feature.properties.Name || "Hồ";
+          layer.bindPopup("Tên hồ: " + name);
+        }
+      }).addTo(map);
+    });
   </script>
 
 </body>
