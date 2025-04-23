@@ -77,7 +77,7 @@
             fillOpacity: 0.1
           },
           onEachFeature: function (feature, layer) {
-            const name = feature.properties.NAME_1 || "Không rõ";
+            const name = feature.properties.Name || "Không rõ";
             layer.bindPopup("Tỉnh/Thành: " + name);
           }
         }).addTo(map);
