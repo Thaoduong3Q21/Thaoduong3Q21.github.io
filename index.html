@@ -29,26 +29,6 @@
     // Thêm marker
     var marker = L.marker([20.9893, 105.7956]).addTo(map);
     marker.bindPopup("<b>Chào bạn!</b><br>Đây là Đại học Hà Nội.").openPopup();
-
-    // Load Hồ Tây
-    fetch('hotay.geojson')
-      .then(response => response.json())
-      .then(data => {
-        L.geoJSON(data, {
-          style: {
-            color: "#00eaff",
-            weight: 1,
-            fillOpacity: 0.8
-          },
-          onEachFeature: function (feature, layer) {
-            const name = feature.properties.Name || "Không rõ";
-            layer.bindPopup(name);
-            layer.bringToFront(); 
-          }
-        }).addTo(map);
-      })
-      .catch(error => console.error("Lỗi khi tải GeoJSON:", error));
-    
     
     // Load GeoJSON ranh giới các tỉnh
     fetch('Vietnam_Provinces.json')
@@ -63,6 +43,28 @@
           onEachFeature: function (feature, layer) {
             const name = feature.properties.NAME_1 || "Không rõ";
             layer.bindPopup("Tỉnh/Thành: " + name);
+          }
+        }).addTo(map);
+      })
+      .catch(error => console.error("Lỗi khi tải GeoJSON:", error));
+
+    
+
+    // Load Hồ Tây
+    fetch('hotay.geojson')
+      .then(response => response.json())
+      .then(data => {
+        L.geoJSON(data, {
+          style: {
+            color: "#be2600",
+            weight: 2,
+            fillColor: "#be2600",
+            fillOpacity: 0.5
+          },
+          onEachFeature: function (feature, layer) {
+            const name = feature.properties.Name || "Không rõ";
+            layer.bindPopup(name);
+            layer.bringToFront(); 
           }
         }).addTo(map);
       })
