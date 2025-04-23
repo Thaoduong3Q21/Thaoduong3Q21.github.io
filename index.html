@@ -58,7 +58,7 @@
           fillOpacity: 0.5
         },
         onEachFeature: function (feature, layer) {
-          const name = feature.properties.name || "Hồ";
+          const name = feature.properties.Name || "Hồ";
           layer.bindPopup("Tên hồ: " + name);
         }
       }).addTo(map);
