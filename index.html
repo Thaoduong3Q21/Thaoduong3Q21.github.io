@@ -21,7 +21,7 @@
     // Khởi tạo bản đồ
     var map = L.map('map').setView([14.0583, 108.2772], 6); // Tọa độ Việt Nam
 
-    // 1. Tạo pane riêng cho Hồ Tây
+    // 1. Tạo pane riêng cho Hồ Bảo Linh
     map.createPane("HoBaoLinh");
     map.getPane("HoBaoLinh").style.zIndex = 650; // cao hơn default vector
 
@@ -52,7 +52,7 @@
       })
       .catch(error => console.error("Lỗi khi tải GeoJSON:", error));
 
-    // Hồ Tây (vẽ sau - nằm trên)
+    // Hồ Bảo Linh (vẽ sau - nằm trên)
     fetch('Ho_Bao_Linh.geojson')
     .then(res => res.json())
     .then(data => {
