@@ -53,7 +53,7 @@
       .catch(error => console.error("Lỗi khi tải GeoJSON:", error));
 
     // Hồ Tây (vẽ sau - nằm trên)
-    fetch('Lake (1).json')
+    fetch('Ho_Bao_Linh.geojson')
     .then(res => res.json())
     .then(data => {
       L.geoJSON(data, {
@@ -66,7 +66,7 @@
         },
         onEachFeature: (feature, layer) => {
           const name = feature.properties.Name || "Hồ";
-          layer.bindPopup("Tên hồ: " + name);
+          layer.bindPopup(name);
         }
       }).addTo(map);
     });
