@@ -22,8 +22,8 @@
     var map = L.map('map').setView([14.0583, 108.2772], 6); // Tọa độ Việt Nam
 
     // 1. Tạo pane riêng cho Hồ Tây
-    map.createPane("hoTayPane");
-    map.getPane("hoTayPane").style.zIndex = 650; // cao hơn default vector
+    map.createPane("HoBaoLinh");
+    map.getPane("HoBaoLinh").style.zIndex = 650; // cao hơn default vector
 
     // Lớp nền
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -53,11 +53,11 @@
       .catch(error => console.error("Lỗi khi tải GeoJSON:", error));
 
     // Hồ Tây (vẽ sau - nằm trên)
-    fetch('hotay.geojson')
+    fetch('Lake (1).json')
     .then(res => res.json())
     .then(data => {
       L.geoJSON(data, {
-        pane: "hoTayPane", // vẽ lên pane riêng
+        pane: "HoBaoLinh", // vẽ lên pane riêng
         style: {
           color: "#0044cc",
           weight: 3,
