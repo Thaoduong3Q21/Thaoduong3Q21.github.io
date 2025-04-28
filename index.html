@@ -36,22 +36,32 @@
     
     // Load GeoJSON ranh giới các tỉnh
     fetch('Vietnam_Provinces.json')
-      .then(response => response.json())
-      .then(data => {
-        L.geoJSON(data, {
-          style: {
-            color: "#ff6600",
-            weight: 1,
-            fillOpacity: 0.01
-          },
-          onEachFeature: function (feature, layer) {
-            const name = feature.properties.NAME_1 || "Không rõ";
-            layer.bindPopup("Tỉnh/Thành: " + name);
-          }
-        }).addTo(map);
-      })
-      .catch(error => console.error("Lỗi khi tải GeoJSON:", error));
+  .then(response => response.json())
+  .then(data => {
+    L.geoJSON(data, {
+      style: {
+        color: "#ff6600",
+        weight: 1,
+        fillOpacity: 0.01
+      },
+      onEachFeature: function (feature, layer) {
+        const name = feature.properties.NAME_1 || "Không rõ";
 
+        // Lấy vị trí trung tâm tỉnh
+        const center = layer.getBounds().getCenter();
+
+        // Tạo một marker chỉ chứa text (không icon)
+        const label = L.marker(center, {
+          icon: L.divIcon({
+            className: 'province-label', 
+            html: name,
+            iconSize: [100, 20] // kích thước vùng chiếm
+          })
+        }).addTo(map);
+      }
+    }).addTo(map);
+  })
+  .catch(error => console.error("Lỗi khi tải GeoJSON:", error));
     // Hồ Bảo Linh (vẽ sau - nằm trên)
     fetch('Ho_Bao_Linh.geojson')
     .then(res => res.json())
