@@ -55,24 +55,24 @@
         fillOpacity: 0.01
       },
       onEachFeature: function (feature, layer) {
-        const name = feature.properties.NAME_1 || "Không rõ";
-        const dens = feature.properties.Urban_Dens;
+      const name = feature.properties.NAME_1 || "Không rõ";
+      const dens = feature.properties.Urban_Dens;
 
-        // Lấy vị trí trung tâm tỉnh
-        const center = layer.getBounds().getCenter();
+      const center = layer.getBounds().getCenter();
 
-        // Tạo một marker chỉ chứa text (không icon)
-        const label = L.marker(center, {
-          icon: L.divIcon({
-            className: 'province-label', 
-            html: name + "\n urban density: " + dens,
-            iconSize: [100, 20] // kích thước vùng chiếm
-          })
-        }).addTo(map);
-      }
+      const label = L.marker(center, {
+        icon: L.divIcon({
+        className: 'province-label', 
+        html: name + "<br>Urban density: " + dens,
+        iconSize: [100, 30] // cao hơn 1 chút vì có 2 dòng
+      })
+    }).addTo(map);
+    }    
     }).addTo(map);
   })
   .catch(error => console.error("Lỗi khi tải GeoJSON:", error));
+
+    
     // Hồ Bảo Linh (vẽ sau - nằm trên)
     fetch('Ho_Bao_Linh.geojson')
     .then(res => res.json())
