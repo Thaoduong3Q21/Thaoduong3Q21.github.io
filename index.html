@@ -56,6 +56,7 @@
       },
       onEachFeature: function (feature, layer) {
         const name = feature.properties.NAME_1 || "Không rõ";
+        const dens = feature.properties.Urban_Dens;
 
         // Lấy vị trí trung tâm tỉnh
         const center = layer.getBounds().getCenter();
@@ -64,7 +65,7 @@
         const label = L.marker(center, {
           icon: L.divIcon({
             className: 'province-label', 
-            html: name,
+            html: name + "\n urban density: " + dens,
             iconSize: [100, 20] // kích thước vùng chiếm
           })
         }).addTo(map);
